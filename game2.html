@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GAME 2</title>
+    <link rel="stylesheet" href="game2.css">
+</head>
+<body>
+ <form action="">
+  <label for="">
+   <select name="deroulant" id="choix">
+        <option value=""></option>    
+        <option value="Pair">Pair</option>  
+        <option value="Impair">Impair</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+        <option value="30">30</option>
+        <option value="31">31</option>
+        <option value="32">32</option>
+        <option value="33">33</option>
+        <option value="34">34</option>
+        <option value="35">35</option>
+       <option value="36">36</option>
+   </select>
+  </label>  
+  <div>
+  <input type="submit" id="go" value="GO !" onclick="getInput()">    
+  </div>
+  <div>
+<input type="number" id="mise" placeholder="EN MILLIERS DE FRANCS">
+  </div>
+  
+  <p>Ne vous posez plus de questions, misez et gagnez ! <br><br>
+    Si le numéro tiré est pair ou impair, vous gagnez le double de votre mise. <br>  
+    Si le numéro tiré coincide avec le numéro choisi, vous gagnez 35 fois la valeur de votre mise ! <br>
+    Une fois que le numéro tiré tombe sur 0 ou tout autre cas,vous ne gagnez rien. </p>
+ </form> 
+ <script lang="javascript">
+    var n_aleatoire;
+    
+    function getInput(){
+        var choix = document.getElementById("choix").value;
+        var mise = document.getElementById("mise").value;
+        n_aleatoire = Math.floor(Math.random() * 37);
+ 
+        choix = document.getElementById("choix").value;
+        if ( (mise<0) )  {
+            alert("Vous ne pouvez pas miser cette somme");
+        } else {
+            if(n_aleatoire == 0){
+            alert("Le numéro au hasard est : " +n_aleatoire +"\nVous avez perdu. Retentez votre chance ! ")
+        };
+        if(choix == ""){
+
+            alert("Veuillez faire un choix")
+
+        }else if( (choix == "Pair" &&  n_aleatoire%2==0) || ( choix == "Impair" && n_aleatoire%2!==0) ){
+            mise = mise*2
+            alert("Le numéro au hasard est : " +n_aleatoire +"\nVous avez gagné " + mise+ " milles FRANCS CFA ! ");
+
+        }else if( choix == n_aleatoire ){
+            mise = mise*36
+            alert("Le numéro au hasard est : " +n_aleatoire +"\nVous avez gagné " + mise+ " milles FRANCS CFA ! ");
+
+        }
+        else {
+
+            alert("Le numéro au hasard est : " +n_aleatoire +"\nVous avez perdu. Retentez votre chance ! ")
+
+        }
+        }
+        
+    }
+
+ </script>  
+ <div class="topnav">
+    <a class="active" href="game1.html">GAME 1</a>
+    <a href="game2.html">GAME 2</a>
+    <a href="game3.html">GAME 3</a>
+    <a href="game4.html">GAME 4</a>
+</div> 
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GAME 4</title>
+    <link rel="stylesheet" href="game4.css">
+</head>
+<body>
+        <form action="" name="formulaire" id="myForm">
+                <label for="">     
+                <select name="deroulant" id="choix">
+                <option value=""></option>    
+                <option value="Pair">Pair</option>  
+                <option value="Impair">Impair</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+               <option value="36">36</option>
+</select> 
+</label>
+<div class="topnav">
+    <a class="active" href="game1.html">GAME 1</a>
+    <a href="game2.html">GAME 2</a>
+    <a href="game3.html">GAME 3</a>
+    <a href="game4.html">GAME 4</a>
+</div>
+<div class="texte"> 
+<p>Ne vous posez plus de questions, misez et gagnez ! <br>
+  Votre porte monnaie est à 100milles FRANCS CFA ainsi qu'un autre porte monnaie qui emmagasine les pertes. <br>
+  Gagnez le double de votre mise si le numéro tiré est pair ou impair. <br>
+  Si le numéro tiré est le même que le numéro choisi,vous gagnez 35 fois la valeur de votre mise ! <br>
+ Dans le cas où le numéro tiré est 0 et pour tout autre cas vous perdez votre mise. </p>
+</div>
+<div>
+<input type="number" placeholder="SOMME EN MILLIERS DE FRANCS CFA" id="mise"> 
+</div>
+<div>
+<input type="submit" value="GO !" id="go" onclick="getInput()"> 
+</div>
+
+<script lang="javascript">
+var choix;
+var mise;
+var n_aleatoire;
+var porte_monnaie_joueur = 100;
+var porte_monnaie_machine = 0;
+
+var form = document.getElementById("myForm");
+function handleForm(event) { event.preventDefault(); } 
+form.addEventListener('submit', handleForm);
+
+document.getElementById("myForm").onload = function() {myFunction()};
+
+function myFunction() {
+  document.getElementById("insert").innerHTML = porte_monnaie_joueur;
+}
+
+
+function getInput(){
+        var choix = document.getElementById("choix").value;
+        var mise = document.getElementById("mise").value;
+        n_aleatoire = Math.floor(Math.random() * 37);
+ 
+        choix = document.getElementById("choix").value;
+        
+        
+        if( (mise>porte_monnaie_joueur) || ( mise<0 ) ) {
+            alert("Vous ne pouvez pas miser cette somme ")
+
+        }else {
+
+            if(choix == ""){
+
+            alert("Veuillez faire un choix")
+
+            }else if(n_aleatoire == 0){
+                porte_monnaie_joueur = porte_monnaie_joueur - mise
+                porte_monnaie_machine = porte_monnaie_machine + mise
+                alert("Le numéro au hasard est : " +n_aleatoire +"\nVous avez perdu. Retentez votre chance si possible !\n Votre porte-monnaie " + porte_monnaie_joueur)
+                document.getElementById("insert").innerHTML = porte_monnaie_joueur.toString() +" milles Francs CFA";
+                document.getElementById("insert_machine").innerHTML = porte_monnaie_machine.toString() +" milles Francs CFA";
+            
+            }else if( (choix == "Pair" &&  n_aleatoire%2==0) || ( choix == "Impair" && n_aleatoire%2!==0) ){
+                
+                mise = mise*2
+                porte_monnaie_joueur = porte_monnaie_joueur + parseInt(mise)
+
+                alert("Le numéro au hasard est : " +n_aleatoire +"\nVous avez gagné " + mise +" milles FRANCS CFA"+ "\nVotre porte-monnaie " + porte_monnaie_joueur + " milles FRANCS CFA ");
+                document.getElementById("insert").innerHTML = porte_monnaie_joueur.toString() +" milles Francs CFA";
+                document.getElementById("insert_machine").innerHTML = porte_monnaie_machine.toString() +" milles Francs CFA";
+
+            }else if( choix == n_aleatoire ){
+                mise = mise*36
+                porte_monnaie_joueur = porte_monnaie_joueur + mise
+                
+                alert("Le numéro au hasard est : " +n_aleatoire +"\nVous avez gagné " + mise +" milles FRANCS CFA"+ "\nVotre porte-monnaie " + porte_monnaie_joueur + " milles FRANCS CFA. ");
+                document.getElementById("insert").innerHTML = porte_monnaie_joueur.toString() +" milles Francs CFA";
+                document.getElementById("insert_machine").innerHTML = porte_monnaie_machine.toString() +" milles Francs CFA";
+            }
+            else {
+                porte_monnaie_joueur = porte_monnaie_joueur - mise
+                porte_monnaie_machine = porte_monnaie_machine + parseInt(mise)
+                alert("Le numéro au hasard est : " +n_aleatoire +"\nVous avez perdu. Retentez votre chance si possible ! \n Votre porte-monnaie " + porte_monnaie_joueur)
+                document.getElementById("insert").innerHTML = porte_monnaie_joueur.toString() +" milles Francs CFA";
+                document.getElementById("insert_machine").innerHTML = porte_monnaie_machine.toString() +" milles Francs CFA";
+            }
+
+        }
+
+}
+
+</script> 
+<div class="porte_monnaie"><p>Votre porte-monnaie :</p> <p id="insert">100 milles Franc CFA</p></div>
+<div class="porte_monnaie_machine">
+<p>Porte-monnaie de la machine:</p> <p id="insert_machine">0 mille Franc CFA</p>
+</div>
+
+</body>
+</html>
